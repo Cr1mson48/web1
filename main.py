@@ -42,7 +42,7 @@ def load_user(user_id):
 def main():
     db_session.global_init("db/data.db")
     app.task_queue_mexc = rq.Queue('mexc', connection=Redis(host="localhost", port="6379"))
-    app.run()
+    app.run(host='0.0.0.0')
 
 
 
