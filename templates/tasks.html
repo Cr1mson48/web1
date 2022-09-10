@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+
+
+{% block app_content %}
+
+    {% for el in tasks %}
+    <div class="alert alert-primary" role="alert">
+    <div class="row">
+        <h5 class="col-2" style="color: black">Добавлено</h5>
+        <h5 class="col-2" style="color: black">Старт</h5>
+        <h5 class="col-2" style="color: black">Аккаунт</h5>
+        <h5 class="col-2" style="color: black">Покупаем</h5>
+        <h5 class="col-2" style="color: black">Объём</h5>
+        <h5 class="col-2" style="color: black">Статус</h5>
+        <label class="col-2" style="color: black">{{ el.created_date }}</label>
+        <label class="col-2" style="color: black">{{ el.time }}</label>
+        <label class="col-2" style="color: black">{{ el.name }}</label>
+        <label class="col-2" style="color: black">{{ el.ticker }}</label>
+        <label class="col-2" style="color: black">{{ el.price }}</label>
+        <label class="col-2" style="color: black">Ожидание</label>
+        <button type="button" class="btn btn-danger col-1">Остановить</button>
+
+
+    </div>
+    </div>
+    {% endfor %}
+{% endblock %}

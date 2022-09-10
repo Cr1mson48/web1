@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>Listing Trading</title>
+    {% endif %}
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+
+
+    </style>
+    <style>
+    body{background:rgb(32,32,32)}
+    </style>
+    <link href="{{url_for('static', filename='css/navbar.css')}}" rel="stylesheet">
+
+    {% block head_content %}
+    {% endblock %}
+
+
+
+
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="container">
+        <img src="{{url_for('static', filename='img/logo3.png')}}" alt="" width="40" height="35"
+             class="d-inline-block align-text-top">
+        <ul class="navbar-nav me-auto mb-2 mb-sm-0"><li class="nav-item">
+        <a class="navbar-brand effect-link" style="font-family:Impact;color:orange;font-size:25px;margin-left:20px"  href="{{url_for('index')}}">HOT Trading</a>
+        </li></ul>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                <li class="nav-item">
+                    <a class="nav-link active effect-link" aria-current="page" href="{{url_for('add')}}">Создать задание</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                <li class="nav-item">
+                    <a class="nav-link active effect-link" aria-current="page" href="{{url_for('tasks')}}">Мои задания</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                <li class="nav-item">
+                    <a class="nav-link active effect-link" aria-current="page" href="{{url_for('index')}}">Список листингов</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                <li class="nav-item">
+                    <a class="nav-link active effect-link" aria-current="page" href="{{url_for('api')}}">Подключить API</a>
+                </li></ul>
+
+
+
+            <div class=" nav-item dropdown">
+                {% if current_user.is_anonymous %}
+                <a class="nav-link active effect-link" href="{{url_for('login')}}">ВОЙТИ</a>
+                {% else %}
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ current_user.name }}</a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item" href="{{url_for('index')}}">Поддержка</a></li>
+                    <li><a class="dropdown-item" href="{{url_for('logout')}}">Выйти</a></li>
+                </ul>
+                {% endif %}
+            </div>
+                <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                    <li class="nav-item">
+                        <img src="https://bootstraptema.ru/snippets/icons/2017/smtb/elliot.jpg" alt="" width="40" height="35"
+                        class="d-inline-block align-text-top">
+                    </li>
+                </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+
+</div>
+<script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+<script>
+$(document).ready(function() {
+$("body").css("display", "none");
+$("body").fadeIn(1597);
+$("a.effect-link").click(function(event){
+event.preventDefault();
+linkLocation = this.href;
+$("body").fadeOut(610, redirectPage);
+});
+function redirectPage() {
+window.location = linkLocation;
+}
+});
+</script>
+<script>
+$(document).ready(function() {
+setInterval( function() {
+var hours = new Date().getHours();
+$(".hours").html(( hours < 10 ? "0" : "" ) + hours);
+}, 1000);
+setInterval( function() {
+var minutes = new Date().getMinutes();
+$(".min").html(( minutes < 10 ? "0" : "" ) + minutes);
+},1000);
+setInterval( function() {
+var seconds = new Date().getSeconds();
+$(".sec").html(( seconds < 10 ? "0" : "" ) + seconds);
+},1000);
+});
+</script>
+
+{% block app_content %}
+{% endblock %}
+
+</body>
+</html>

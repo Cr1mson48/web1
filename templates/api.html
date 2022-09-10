@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+<title>Добавить API</title>
+{% endblock %}
+
+
+{% block app_content %}
+<style>
+
+      .block {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    padding: 1rem;
+    top: 26%;
+    left: 50%;
+    margin: -125px 0 0 -125px;
+
+
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+    </style>
+
+
+
+<form method="post">
+    {{ form.hidden_tag() }}
+    <div class="parent">
+        <div class="block">
+            <img style="transform: translate(57px,0);" class="mb-4" src="{{url_for('static', filename='img/api.png')}}" alt="" width="72" height="57">
+        <h1 style="color: white" class="h3 mb-3 fw-normal">Добавление API</h1>
+            <select name="select-form" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+              {% for opt in option %}
+                <option value="{{ opt }}">{{ opt }}</option>
+              {% endfor %}
+            </select>
+            <label style="color: white">Название аккаунта</label>
+            <div style="margin: 4px auto 0 auto;" class="form-floating">
+            {{ form.name_account(class="form-control", id="floatingInput0", placeholder="Название аккаунта") }}
+            </div>
+            <label style="color: white">API key</label>
+            <div style="margin: 4px auto 0 auto;" class="form-floating">
+            {{ form.apiKey(class="form-control", id="floatingInput1", placeholder="API key") }}
+            </div>
+            <label style="color: white">Secrer key</label>
+            <div style="margin: 4px auto 0 auto;" class="form-floating">
+            {{ form.secretKey(class="form-control", id="floatingInput2", placeholder="Secret key") }}
+            </div>
+            <label style="color: white">API PassPhrase</label>
+            <div style="margin: 4px auto 0 auto;" class="form-floating">
+            {{ form.PassPhrase(class="form-control", id="floatingInput3", placeholder="API PassPhrase") }}
+            </div>
+            <div style="margin: 4px auto 0 auto;" class="form-floating">
+            {{ form.submit(class="w-100 btn btn-lg btn-primary", type="submit") }}
+                </div>
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}
